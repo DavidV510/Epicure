@@ -14,6 +14,10 @@
 
 /* Head */
 
+.head{
+    border-bottom: solid 0.2px #979797;
+    padding-bottom: 0.4rem;
+}
 .headContainer{
     max-width: 140rem;
     margin: 0 auto;

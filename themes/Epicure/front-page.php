@@ -37,7 +37,9 @@
         </a>
 
        <?php endforeach; ?>
+       <a class="all" href="<?php echo get_category_link(17); ?>">
        <h3>All Restaurants <img class="arrow-img" src="<?php echo get_template_directory_uri()."/img/all-restaurants-arrows.svg" ?>"></h3>
+       </a>
     </div>
 
 </section>

@@ -46,4 +46,28 @@ $(document).ready(function(){
     else{
         $('.owl-carousel').css('display','grid');
     }
+
+    // Show Different Dishes
+    $('#dishes').on('change',function(){
+        var selected_option_value=$("#dishes option:selected").val();
+        console.log(selected_option_value)
+
+        $.ajax({
+            type:'post',
+            url:admin_ajax.ajaxurl,
+            data:{
+                'action': 'getDishes',
+                'name': selected_option_value
+            },
+            success:function(response){
+               console.log(response)
+            },
+            error:function(response){
+                console.log(response)
+            }
+        })
+
+    });
+
+   
 })

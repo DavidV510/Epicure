@@ -134,11 +134,38 @@ function changes_dishes_taxonomy() {
 	));
   }
 
+  function whenServe_taxonomy() {
+ 
+	$labels = array(
+	  'name' => _x( 'Serving Time', 'taxonomy general name' ),
+	  'singular_name' => _x( 'Serving Time', 'taxonomy singular name' ),
+	  'search_items' =>  __( 'Search Serving Time' ),
+	  'all_items' => __( 'All Serving Times' ),
+	  'parent_item' => __( 'Parent Serve' ),
+	  'parent_item_colon' => __( 'Parent Serve:' ),
+	  'edit_item' => __( 'Edit Serving Time' ), 
+	  'update_item' => __( 'Update Serving Time' ),
+	  'add_new_item' => __( 'Add New Serving Time' ),
+	  'new_item_name' => __( 'New Serving Time Name' ),
+	  'menu_name' => __( 'Serving Times' ),
+	); 	
+   
+	register_taxonomy('serving times',array('dishes'), array(
+	  'hierarchical' => true,
+	  'labels' => $labels,
+	  'show_ui' => true,
+	  'show_admin_column' => true,
+	  'query_var' => true,
+	  'rewrite' => array( 'slug' => 'serving times' ),
+	));
+  }
+
 
 	// Hooks
 	add_action( 'init', 'icons_dishes_taxonomy', 0 );
 	add_action( 'init', 'sides_dishes_taxonomy', 0 );
 	add_action( 'init', 'changes_dishes_taxonomy', 0 );
+	add_action( 'init','whenServe_taxonomy',0);
     add_action( 'init', 'dish_menu' );
 
 ?>

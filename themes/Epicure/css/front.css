@@ -161,9 +161,11 @@ body{
     margin: 0;
     padding-bottom: 2.5rem;
 }
-
-.popularRestaurants .the-restaurants h3{
+.popularRestaurants .the-restaurants .all{
     grid-column: 3;
+}
+.popularRestaurants .the-restaurants .all h3{
+    
     text-align: right;
     font-size: 3rem;
     font-family: 'Bold';
