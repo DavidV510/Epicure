@@ -3,15 +3,15 @@
   require get_template_directory().'/inc/queries.php';
   
   function epicure_scripts(){
-     wp_enqueue_style('head',get_template_directory_uri().'/css/head.css',NULL,'1.0.0.1.9.9');
-     wp_enqueue_style('foot',get_template_directory_uri().'/css/foot.css',NULL,'1.0.0.1.9.9');
-     wp_enqueue_style('front',get_template_directory_uri().'/css/front.css',NULL,'1.0.0.1.9.9');
-     wp_enqueue_style('category',get_template_directory_uri().'/css/category.css',NULL,'1.0.0.1.9.9');
-     wp_enqueue_style('restaurant',get_template_directory_uri().'/css/restaurant.css',NULL,'1.0.0.1.9.9');
-     wp_enqueue_style('style',get_stylesheet_uri(),array('head','foot','front','category','restaurant'),'1.0.0.1.9.9');
+     wp_enqueue_style('head',get_template_directory_uri().'/css/head.css',NULL,'1.0.0.2.0');
+     wp_enqueue_style('foot',get_template_directory_uri().'/css/foot.css',NULL,'1.0.0.2.0');
+     wp_enqueue_style('front',get_template_directory_uri().'/css/front.css',NULL,'1.0.0.2.0');
+     wp_enqueue_style('category',get_template_directory_uri().'/css/category.css',NULL,'1.0.0.2.0');
+     wp_enqueue_style('restaurant',get_template_directory_uri().'/css/restaurant.css',NULL,'1.0.0.2.0');
+     wp_enqueue_style('style',get_stylesheet_uri(),array('head','foot','front','category','restaurant'),'1.0.0.2.0');
 
      wp_enqueue_script('jquery');
-     wp_enqueue_script('script', get_template_directory_uri().'/js/script.js',array('jquery'), '1.0.0.1.4',true);
+     wp_enqueue_script('script', get_template_directory_uri().'/js/script.js',array('jquery'), '1.0.0.1.5',true);
      wp_localize_script(
           'script',
           'admin_ajax',

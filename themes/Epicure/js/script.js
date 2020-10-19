@@ -48,24 +48,27 @@ $(document).ready(function(){
     }
 
     // Show Different Dishes
-    $('#dishes').on('change',function(){
-        var selected_option_value=$("#dishes option:selected").val();
+    $('#dishes').on('click',function(){
+        var selected_option_value=$("#dishes button:clicked").val();
+        var id = $(this).data('id');
         console.log(selected_option_value)
 
-        $.ajax({
-            type:'post',
-            url:admin_ajax.ajaxurl,
-            data:{
-                'action': 'getDishes',
-                'name': selected_option_value
-            },
-            success:function(response){
-               console.log(response)
-            },
-            error:function(response){
-                console.log(response)
-            }
-        })
+        // $.ajax({
+        //     type:'post',
+        //     url:admin_ajax.ajaxurl,
+        //     data:{
+        //         'action': 'getDishes',
+        //         'name': selected_option_value,
+        //         'id' : id
+        //     },
+        //     success:function(response){
+        //        var rep=response.replace('0','')
+        //       $('.theDishes').html(rep.replace('0',''));
+        //     },
+        //     error:function(response){
+        //         console.log(response)
+        //     }
+        // })
 
     });
 

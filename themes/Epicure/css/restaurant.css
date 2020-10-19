@@ -45,3 +45,61 @@
     letter-spacing: 2px;
 }
 
+
+.resContainer .theDishes{
+    display: grid;
+    grid-template-columns: repeat(4,25%);
+    grid-gap: 50px;
+    text-align: center;
+}
+
+.resContainer .theDishes .theDish{
+    height: 40rem;
+    width: 23.6rem;
+    background-color: var(--mask);
+}
+
+.resContainer .theDishes .theDish .theDish-Img{
+    width: 100%;
+    height: 15rem;
+}
+
+.resContainer .theDishes .theDish .theDish-Title{
+    font-size: 2.2rem;
+    font-family: 'Helvetica Medium';
+    margin: 0;
+    margin-top: 1.8rem;
+    margin-bottom: 1.3rem;
+}
+
+.resContainer .theDishes .theDish .theDish-Content{
+    font-size: 1.9rem;
+    font-family: 'Helvetica Thin';
+    margin: 0;
+    padding: 0 3.3rem;
+    height: 13.2rem;
+}
+
+.resContainer .theDishes .theDish .theDish-Price{
+    width: 75%; 
+    text-align: center; 
+    border-bottom: 1px solid #979797; 
+    line-height: 0.1em;
+    margin: 10px auto; 
+    font-family: 'Helvetica Thin';
+}
+
+.resContainer .theDishes .theDish .theDish-Price span {
+    background: var(--mask);
+    padding: 0px 10px;
+    font-size: 24.9px;
+    letter-spacing: 1.66px;
+    
+    position: relative;
+    top:0.7rem;
+}
+.resContainer .theDishes .theDish .theDish-Price span svg{
+    margin-right: 0.2rem;
+}
+
+
