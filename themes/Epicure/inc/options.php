@@ -34,7 +34,7 @@
 
                     foreach($orders as $res) { ?>
 
-                        <tr>
+                        <tr id="<?php echo $res['id']; ?>">
                             <td>
                             <?php echo $res['id']; ?>
                             </td>
@@ -55,8 +55,32 @@
                             <?php echo $res['phone']; ?>
                             </td>
 
-                            <td>
-                            <?php echo $res['ItemList']; ?>
+                            <td class="itemsList">
+                             <table>
+                                <?php $beforeJson=stripslashes($res['ItemList']);
+                                    $theJson= json_decode($beforeJson);
+                                    foreach($theJson as $item):?>
+                                    <tr>
+                                        <td> Title : <?php echo $item->title; ?></td>
+
+                                        <?php if($item->side){ ?>
+                                         <td> Side: <?php echo $item->side; ?> </td>
+                                        <?php  } else{ ?>
+                                            <td> No Sides </td>
+                                        <?php  } ?>
+
+                                        <?php if($item->change){ ?>
+                                         <td> Change: <?php echo $item->change; ?> </td>
+                                        <?php  } else{ ?>
+                                            <td> No Changes </td>
+                                        <?php  } ?>
+                                        
+                                        <td> Quantity: <?php echo $item->quantity; ?> </td>
+                                        
+                                        <td>Total Cost: <?php echo $item->total; ?> </td>
+                                    </tr>
+                                <?php endforeach;?>
+                            </table>
                             </td>
 
                             <td>
@@ -65,12 +89,12 @@
 
 
                             <td>
-                            <a href="#" class="remove_res" data-reservation="<?php echo $res['id']; ?>">
+                            <a href="#" class="remove_res" onclick="remove(<?php echo $res['id']; ?>)">
                               Remove
                             </a>
                             </td>
                         </tr>
-
+                       
                   <?php  } ?>
                 
                 </tbody>

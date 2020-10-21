@@ -125,7 +125,7 @@
                                             <?php }else{ ?>
                                             <?php echo ''; ?>
                                         <?php }; ?>
-                                        <?php echo $dish->post_title ?>
+                                        <span><?php echo $dish->post_title ?></span>
                                     </div>
                                     
                                 </div>
@@ -139,7 +139,9 @@
                                                     <path d="M1 12V.48h5.253C8.127.453 9.064 1.616 9.064 3.97v4.45"/>
                                                     <path d="M13.544.48V12H8.291c-1.874.027-2.811-1.136-2.811-3.49V4.06"/>
                                                 </g>
-                                            </svg> <?php echo $DishPrice; ?>
+                                            </svg> <span style="padding: 0;
+                                                position: relative;
+                                                top: 0.1rem;"><?php echo $DishPrice; ?></span>
                                         </span>
                                    </div>
 
@@ -202,7 +204,7 @@
 
 
                                    <div class="modal-add-bag">
-                                        <button onclick="addToBag()">
+                                        <button onclick="addToBag('<?php echo $newId; ?>','<?php echo $dish->ID; ?>')">
                                             ADD TO BAG
                                         </button>
                                    </div>

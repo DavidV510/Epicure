@@ -63,7 +63,7 @@ function get_Dishes() {
                                             <?php }else{ ?>
                                             <?php echo ''; ?>
                                         <?php }; ?>
-                                        <?php echo $dish->post_title ?>
+                                        <span><?php echo $dish->post_title ?></span>
                                     </div>
                                     
                                 </div>
@@ -77,7 +77,9 @@ function get_Dishes() {
                                                     <path d="M1 12V.48h5.253C8.127.453 9.064 1.616 9.064 3.97v4.45"/>
                                                     <path d="M13.544.48V12H8.291c-1.874.027-2.811-1.136-2.811-3.49V4.06"/>
                                                 </g>
-                                            </svg> <?php echo $DishPrice; ?>
+                                            </svg> <span style="padding: 0;
+                                                position: relative;
+                                                top: 0.1rem;"><?php echo $DishPrice; ?></span>
                                         </span>
                                    </div>
 
@@ -140,7 +142,7 @@ function get_Dishes() {
 
 
                                    <div class="modal-add-bag">
-                                        <button onclick="addToBag()">
+                                        <button onclick="addToBag('<?php echo $newId; ?>','<?php echo $dish->ID; ?>')">
                                             ADD TO BAG
                                         </button>
                                    </div>
@@ -168,45 +170,76 @@ function get_Dishes() {
 
 
 
-    function send_ItemToCart(){ 
-        if(isset($_POST['title'])){?>
+    function send_ItemTo_Admin(){ 
+        global $wpdb;
 
-       
-                <tr>
-                            <td>
-                            <?php echo $_POST['title']; ?>
-                            </td>
-                        
-                            <td>
-                            <?php echo $_POST['img']; ?>
-                            </td>
-                        
-                            <td>
-                            <?php echo $_POST['side']; ?>
-                            </td>
-                        
-                            <td>
-                            <?php echo $_POST['change']; ?>
-                            </td>
-                       
-                            <td>
-                            <?php echo $_POST['quantity']; ?>
-                            </td>
+        if(isset($_POST['email'])){
+            $name=sanitize_text_field($_POST['name']);
+            $email=sanitize_text_field($_POST['email']);
+            
+            $phone=sanitize_text_field($_POST['phone']);
+            $ItemList=sanitize_text_field($_POST['ItemList']);
+            $totalPrice=sanitize_text_field($_POST['totalPrice']);
 
-                            <td>
-                            <?php echo $_POST['total']; ?>
-                            </td>
-                </tr>
-            <?php 
-        $url=get_page_by_title('Carts');
-        wp_redirect(get_permalink($url));
-        exit();
-        } //Of The IF State
-       
+            
+            $table = $wpdb->prefix. 'orders';
+            $data=array(
+                'name'=>$name,
+                'email'=>$email,
+                'phone'=>$phone,
+                'date'=> date('Y-m-d H:i:s'),
+                'ItemList'=>$ItemList,
+                'totalPrice'=>$totalPrice
+            );
+
+            $format=array(
+                '%s',
+                '%s',
+                '%s',
+                '%s',
+                '%s'
+            );
+
+            $wpdb->insert($table,$data,$format);
+            $url=get_page_by_title('Thanks For Ordering!');
+            wp_redirect(get_permalink($url));
+            exit();
+            
+            
+        }
+               
     }
     
+    
+    add_action('wp_ajax_sendItemToAdmin','send_ItemTo_Admin');
+    add_action('wp_ajax_nopriv_sendItemToAdmin','send_ItemTo_Admin');
 
-    add_action('wp_ajax_sendItemCart','send_ItemToCart');
-    add_action('wp_ajax_nopriv_sendItemCart','send_ItemToCart');
+
+
+    function remove_order(){
+        if($_POST['type']=='delete'){
+            global $wpdb;
+            $table=$wpdb->prefix.'orders';
+            $id=$_POST['id'];
+
+            $result= $wpdb->delete($table, array('id'=>$id));
+
+            if($result==1){
+                $response=array(
+                    'response'=>'success',
+                );
+            }else{
+                $response=array(
+                    'response'=>'error'
+                );
+            }
+        }
+        
+        
+        die(json_encode($response));
+    }
+
+    add_action('wp_ajax_removeOrder','remove_order');
+    add_action('wp_ajax_nopriv_removeOrder','remove_order');
 
 ?>

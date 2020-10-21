@@ -19,7 +19,6 @@ function epicureOrders_database(){
             email varchar(50) DEFAULT '' NOT NULL,
             phone varchar(10) NOT NULL,
             ItemList varchar(23767),
-            CONSTRAINT ensure_json CHECK (ItemList IS JSON)
             totalPrice int NOT NULL,
             PRIMARY KEY (id)
     ) $charset_collate; ";

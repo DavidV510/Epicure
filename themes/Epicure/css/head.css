@@ -45,6 +45,7 @@
 
 .headContainer .cont .left .logo p{
     margin-left: 1rem;
+    margin-top: 1.5rem;
     letter-spacing: 0.135rem;
 }
 .headContainer .cont .left .logo .logo-img{
@@ -57,8 +58,10 @@
     display: flex;
 
 }
-.headContainer .cont .left .menu ul{
+
+.headContainer .cont .left .menu ul {
     display: flex;
+    padding-top: 1.5rem;
 }
 
 .headContainer .cont .left .menu ul a{
@@ -75,7 +78,7 @@
     float: right;
     display: flex;
     align-items: center;
-    padding-top: 2.2rem;
+    padding-top: 1.7rem;
 }
 .headContainer .cont .right .search{
 

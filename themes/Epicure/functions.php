@@ -10,16 +10,17 @@
 
 
   function epicure_scripts(){
-     wp_enqueue_style('head',get_template_directory_uri().'/css/head.css',NULL,'1.0.0.2.7');
-     wp_enqueue_style('foot',get_template_directory_uri().'/css/foot.css',NULL,'1.0.0.2.7');
-     wp_enqueue_style('front',get_template_directory_uri().'/css/front.css',NULL,'1.0.0.2.7');
-     wp_enqueue_style('category',get_template_directory_uri().'/css/category.css',NULL,'1.0.0.2.7');
-     wp_enqueue_style('restaurant',get_template_directory_uri().'/css/restaurant.css',NULL,'1.0.0.2.7');
-     wp_enqueue_style('cart',get_template_directory_uri().'/css/cart.css',NULL,'1.0.0.2.7');
-     wp_enqueue_style('style',get_stylesheet_uri(),array('head','foot','front','category','restaurant','cart'),'1.0.0.2.7');
+     wp_enqueue_style('head',get_template_directory_uri().'/css/head.css',NULL,'1.0.0.3.6');
+     wp_enqueue_style('foot',get_template_directory_uri().'/css/foot.css',NULL,'1.0.0.3.6');
+     wp_enqueue_style('front',get_template_directory_uri().'/css/front.css',NULL,'1.0.0.3.6');
+     wp_enqueue_style('category',get_template_directory_uri().'/css/category.css',NULL,'1.0.0.3.6');
+     wp_enqueue_style('restaurant',get_template_directory_uri().'/css/restaurant.css',NULL,'1.0.0.3.6');
+     wp_enqueue_style('cart',get_template_directory_uri().'/css/cart.css',NULL,'1.0.0.3.6');
+     wp_enqueue_style('search_Cart_Modal',get_template_directory_uri().'/css/search_dish_modal.css',NULL,'1.0.0.3.6');
+     wp_enqueue_style('style',get_stylesheet_uri(),array('head','foot','front','category','restaurant','cart','search_Cart_Modal'),'1.0.0.3.6');
 
      wp_enqueue_script('jquery');
-     wp_enqueue_script('script', get_template_directory_uri().'/js/script.js',array('jquery'), '1.0.0.1.9',true);
+     wp_enqueue_script('script', get_template_directory_uri().'/js/script.js',array('jquery'), '1.0.0.2.5',true);
      wp_localize_script(
           'script',
           'admin_ajax',
@@ -51,7 +52,19 @@
 
   add_action('init','epicure_menu');
   
-  
 
+
+
+  function admin_scripts(){
+    wp_enqueue_script('ajax-admin', get_template_directory_uri().'/js/admin-ajax.js',array('jquery'), '1.0.0.1',true);
+    wp_localize_script(
+        'ajax-admin',
+        'admin_ajax',
+        array(
+            'ajaxurl'=>admin_url('admin-ajax.php'),
+        )
+    );
+  }
+  add_action('admin_enqueue_scripts','admin_scripts');
 
 ?>

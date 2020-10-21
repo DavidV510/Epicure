@@ -29,12 +29,12 @@ body{
 
 .open .open-inner {
     padding: 0.5rem 14rem;
-    width: 44%;
+    width: 57%;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.88);
     position: relative;
     top: 20rem;
-    height: 27rem;
+    height: 30rem;
 }
 
 .open .open-inner .open-text{
@@ -489,18 +489,23 @@ body{
 .About .innerAbout .appStore .apple:nth-child(2){
     margin-left: 2rem;
 }
-.About .innerAbout .appStore .apple{
+
+
+.About .innerAbout .appStore .apple {
     display: flex;
-    width: 14.4rem;
-    height: 3.5rem;
+    width: 18.4rem;
+    height: 5.3rem;
     border-radius: 9.6px;
-    padding: 0.5rem 2rem;
+    padding: 0.3rem 2rem;
     border: solid 0.6px var(--black);
 }
-.About .innerAbout .appStore .apple svg{
 
+
+.About .innerAbout .appStore .apple svg {
     width: 23.1px;
     height: 29.6px;
+    position: relative;
+    top: 0.5rem;
 }
 .About .innerAbout .appStore .apple p{
     margin: 0;
@@ -517,7 +522,7 @@ body{
     width: 19px;
     height: 25px;
     position: relative;
-    top: 0.5rem;
+    top: 1rem;
     left: 0.3rem;
 }
 
