@@ -7,10 +7,42 @@
             <?php the_field('open_text'); ?>
         </p>
         <div class="open-search">
-            <form class="search-form" method="get" action="<?php echo home_url(); ?>" role="search">
-                        <button class="search-button" type="search" role="button"></button>
-                        <input class="search-input" type="search" name="s" placeholder="<?php _e('Search for restaurant cuisine, chef');?>">
-            </form>
+        <form class="search-form" method="get" action="<?php echo home_url(); ?>" role="search">
+                <button class="search-button" type="search" role="button"></button>
+                <input id="searchInput" onkeyup="search_Input()" class="search-input" autocomplete="off" type="search" name="s" placeholder="<?php _e('Search for restaurant cuisine, chef');?>">        
+        </form>
+            <ul id="search_options">
+                
+                    <?php
+                    $argsRest=array(
+                    'post_type'=>'Restaurant-Menu'
+                    );
+
+                    $Restaurants_Options=new WP_Query($argsRest);
+
+                    while($Restaurants_Options->have_posts()):$Restaurants_Options->the_post();?>
+                <li id="<?php echo get_the_ID().'c'; ?>" class="search_list" value="<?php the_title(); ?>" style="width: 100rem;" onclick="select_Search_Input('<?php echo get_the_ID().'c'; ?>')">
+                   <h2>Restaurants:</h2>
+                   <p><?php the_title(); ?></p>
+                </li>
+                    <?php endwhile; wp_reset_postdata();?>
+
+
+                    <?php
+                    $args_Dishes=array(
+                    'post_type'=>'dishes'
+                    );
+
+                    $Dishes_Options=new WP_Query($args_Dishes);
+
+                    while($Dishes_Options->have_posts()):$Dishes_Options->the_post();?>
+                <li id="<?php echo get_the_ID().'c'; ?>" class="search_list" value="<?php the_title(); ?>" style="width: 100rem;" onclick="select_Search_Input('<?php echo get_the_ID().'c'; ?>')">
+                   <h2>Cuisine:</h2>
+                   <p><?php the_title(); ?></p>
+                </li>
+                    <?php endwhile; wp_reset_postdata();?>
+                
+            </ul>
         </div>
     </div>
 </section>
@@ -133,6 +165,7 @@
         <div class="the-Restaurants owl-carousel">
             <?php $theRestaurants=get_field('his_restaurants',$chef);?>
             <?php foreach($theRestaurants as $res): ?>
+                <a href="<?php echo get_page_link($res->ID); ?>">
                 <div class="rest">
                   <div class="res-img">
                     <?php echo get_the_post_thumbnail($res->ID); ?>
@@ -141,6 +174,7 @@
                     <?php echo $res->post_title; ?>
                   </div>
                 </div>
+                </a>
             <?php endforeach; ?>
         </div>
     </div>

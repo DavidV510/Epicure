@@ -13,8 +13,6 @@
 .SearchCont{
     max-width: 130rem;
     margin: 0 auto;
-    position: absolute;
-    z-index: 1500;
 }
 
 /* Search Modal Dish */
@@ -38,6 +36,8 @@
     margin-top: 4.5rem;
     margin-bottom: 0.9rem;
     float: left;
+    position: relative;
+    z-index: 40;
 }
 
 .modal .innerModal .modal-dialog{
@@ -134,7 +134,7 @@
 
 .modal .innerModal .modal-dialog .modal-dish-inner .modal-dish-content .modal-dish-side .side-pick .the-side-pick{
     font-size: 1.8rem;
-    
+    display: flex;
 }
 
 .modal .innerModal .modal-dialog .modal-dish-inner .modal-dish-content .modal-dish-side .side-pick .the-side-pick input[type=radio]{
@@ -182,7 +182,7 @@
 
 .modal .innerModal .modal-dialog .modal-dish-inner .modal-dish-content .modal-dish-change .change-pick .the-change-pick{
     font-size: 1.8rem;
-    
+    display: flex;
 }
 
 
@@ -262,3 +262,35 @@
     color: #000;
 }
 
+
+.modal .form-check-input{
+    
+}
+
+
+
+@media(max-width:768px){
+    /* Modal Responsive ! ! !  */
+    .modal .innerModal {
+        width: 100%;
+        margin: 0 auto;
+        pointer-events: auto;
+    }
+
+    .modal .innerModal .modal-dialog .modal-dish-img {
+        width: 100%;
+        height: 63vw;
+    }
+    .modal .innerModal .modal-dialog .modal-dish-inner {
+        width: 100%;
+        margin-top: 7rem;
+        background-color: white;
+    }
+
+    .modal .innerModal .modal-dialog .modal-dish-inner .modal-dish-content {
+        width: 23.3rem;
+        margin: 1vw 0vw 1vw 19vw;
+        padding-bottom: 5rem;
+    }
+
+}

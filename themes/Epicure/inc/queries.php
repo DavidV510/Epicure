@@ -157,7 +157,7 @@ function get_Dishes() {
 
             <!-- ///// END MODAL ///// -->
 
-             <?php endforeach; ?>
+             <?php endforeach; wp_die(); ?>
              <?php } else {
               echo ''; 
             }
@@ -201,9 +201,11 @@ function get_Dishes() {
             );
 
             $wpdb->insert($table,$data,$format);
-            $url=get_page_by_title('Thanks For Ordering!');
-            wp_redirect(get_permalink($url));
-            exit();
+            // $url=get_page_by_title('Thanks For Ordering!');
+            // wp_redirect(get_permalink($url));
+            // exit();
+
+            wp_die();
             
             
         }

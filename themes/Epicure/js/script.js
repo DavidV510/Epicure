@@ -32,7 +32,7 @@ $(document).ready(function(){
             margin:-415,
             responsive:{
                 300:{
-                    margin:100,
+                    margin:140,
                     center:true,
                 },
 
@@ -61,7 +61,7 @@ function sendAjax(arg,num){
                 'id' : id
             },
             success:function(response){
-               var rep=response.replace('</li>0','</li>')
+               var rep=response.replace('0','')
               $('.theDishes').html(rep);
               $(`#dishes button`).css('border-bottom','none')
               $(`#dishes button:nth-child(${num})`).css('border-bottom','solid 2.3px rgba(222, 144, 0, 0.466)');
@@ -106,24 +106,35 @@ function add(id){
 
 var CartDishes={};
 var Local_CartDishes={};
+var side=''
+var change=''
+function chooseSide(name , id){
+    console.log('Side name is ' + name)
+    
+    $(`.side .inside`).css('display','none')
+    $(`#${id} .inside`).css('display','block')
+    side=name
+}
+
+function chooseChange(name,id){
+    console.log('Change name is ' + name)
+    $(`.change .inside`).css('display','none')
+    $(`#${id} .inside`).css('display','block')
+    change=name
+}
 
 
 function addToBag(id ,numID){
     var title=$(`#${id} .innerModal .modal-dish-title .title span`).text();
     var img=$(`#${id} .innerModal .modal-dialog .modal-dish-img img`).attr('src');
-    if($(`#${id} .modal-dish-content .modal-dish-side .side-pick .the-side-pick input[type=radio]:checked`).val())
+    if(side==='')
     {
-       var side=$(`#${id} .modal-dish-content .modal-dish-side .side-pick .the-side-pick input[type=radio]:checked`).val();
-    }
-    else{
-        var side='No Sides'
+        side='No Sides'
     }
 
-    if($(`#${id} .modal-dish-content .modal-dish-change .change-pick .the-change-pick input[type="radio"]:checked`).val()){
-        var change=$(`#${id} .modal-dish-content .modal-dish-change .change-pick .the-change-pick input[type="radio"]:checked`).val();
-    }
-    else{
-        var change='No Changes'
+    if(change===''){
+    
+        change='No Changes'
     }
     var quantity=Number(document.querySelector(`#num${numID}`).innerHTML);
     var total=quantity*Number($(`#${id} .modal-dish-content .modal-dish-price span span`).text());
@@ -198,7 +209,8 @@ function removeDish(id){
 
 
 
-
+if(document.querySelector('#form1')){
+    
 document.querySelector("#form1").addEventListener('submit',function(e){
     e.preventDefault()
        var theOrder={
@@ -225,9 +237,141 @@ document.querySelector("#form1").addEventListener('submit',function(e){
                     url:admin_ajax.ajaxurl,
                     success:function(response){
                         console.log('Successfully Sended DATA')
+                        window.location='http://localhost/epicure/thanks-for-ordering/'
                     },
                     error:function(response){
                         console.log(response)
                     }
                 })
   })
+}
+
+
+
+
+
+
+
+
+//   Search Things To Do
+
+
+if($('#searchInput').val()==''){
+    $(".open .open-inner .open-search .search-button").attr("disabled", true);
+}
+
+$('#searchInput').focus(function(){
+    $('#search_options').css('display','block');
+})
+
+
+
+function search_Input(){
+    
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toLowerCase();
+    var SearchOptions = document.getElementById("search_options");
+    var ListOptions = document.getElementById("search_options").getElementsByClassName('search_list');
+    for (var i = 0; i < ListOptions.length; i++) {
+        
+        var p=ListOptions[i].getElementsByTagName('p')[0]
+        var txtValue = p.textContent || p.innerText;
+
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+            ListOptions[i].style.display = "";
+        } else {
+            ListOptions[i].style.display = "none";
+        }
+    }
+}
+
+
+function select_Search_Input(id){
+    document.getElementById('searchInput').value=$(`#${id} p`).text()
+    document.getElementById("search_options").style.display='none';
+    $(".open .open-inner .open-search .search-button").removeAttr("disabled");
+}
+// /////////////////////////////
+
+
+
+
+// Head Search
+
+if($(".right .search .search-form .search-input").val()==''){
+    $(".right .search .search-form search-button").attr("disabled", true);
+}
+
+
+
+
+$(".right .search .search-form .search-input").focus(function(){
+    $('#search_options_header').css('display','block');
+})
+
+function search_header_Input(){
+    
+    var input = $(".right .search .search-form .search-input");
+    var filter = input.value.toLowerCase();
+    var SearchOptions = document.getElementById("#search_options_header");
+    var ListOptions = document.getElementById("search_options_header").getElementsByClassName('search_list');
+    for (var i = 0; i < ListOptions.length; i++) {
+        
+        var p=ListOptions[i].getElementsByTagName('p')[0]
+        var txtValue = p.textContent || p.innerText;
+
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+            ListOptions[i].style.display = "";
+        } else {
+            ListOptions[i].style.display = "none";
+        }
+    }
+}
+
+
+function select_Search_Input_header_Desktop(id){
+    $(".right .search .search-form .search-input").val($(`#${id} p`).text())
+    console.log($(`#${id} p`).text())
+    document.getElementById("search_options_header").style.display='none';
+    $(".right .search .search-form search-button").removeAttr("disabled");
+}
+
+
+
+// Mobile Head Search
+
+if($(".headContainer .mobile .searchMobile .search-form input").val()==''){
+    $(".headContainer .mobile .searchMobile .search-form .search-button").attr("disabled", true);
+}
+
+
+$(".headContainer .mobile .searchMobile .search-form input").focus(function(){
+    $('.headContainer .mobile .searchMobile #search_options_header').css('display','block');
+})
+
+
+function search_header_Input(){
+    
+    var input = $(".headContainer .mobile .searchMobile .search-form input");
+    var filter = input.value.toLowerCase();
+    var SearchOptions = $('.headContainer .mobile .searchMobile #search_options_header');
+    var ListOptions = SearchOptions.getElementsByClassName('search_list');
+    for (var i = 0; i < ListOptions.length; i++) {
+        
+        var p=ListOptions[i].getElementsByTagName('p')[0]
+        var txtValue = p.textContent || p.innerText;
+
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+            ListOptions[i].style.display = "";
+        } else {
+            ListOptions[i].style.display = "none";
+        }
+    }
+}
+
+
+function select_Search_Input_header(id){
+    $(".headContainer .mobile .searchMobile .search-form input").val($(`#${id} p`).text())
+    $('.headContainer .mobile .searchMobile #search_options_header').css('display','none');
+    $(".headContainer .mobile .searchMobile .search-form .search-button").removeAttr("disabled");
+}

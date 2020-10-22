@@ -1,20 +1,37 @@
 <?php get_header(); ?>
 
-<div class="SearchCont">
-<h1>Search</h1>
-    <?php echo sprintf(_('%s Search Results for '),$wp_query->found); ?>
-    <div class="grid3 the-restaurants container owl-carousel">
-      <?php
+<div class="popularRestaurants resContainer SearchCont">
+<?php
       while(have_posts()):the_post();?>
-       
-        <?php if(get_post_type()=='restaurant-menu'){
-            echo 'Restaurant';   
-        }?>
+       <h1 style="margin-top: 6rem;">Search Results for: <?php the_title(); ?> </h1>
+    <div class="grid3 the-restaurants container ">
+      
+        <?php if(get_post_type()=='restaurant-menu'){ ?>
+          
+            <?php $chef=get_field('main_chef'); ?>
+
+            <a href="<?php the_permalink(); ?>">
+            <div class="restaurant">
+                <div class="resu-img">
+                <?php the_post_thumbnail(); ?>
+                </div>
+
+                <div class="resu-content">
+                  <p class="title"><?php the_title() ?></p>
+                  <p class="chef"><?php echo $chef[0]->post_title; ?></p>
+                </div>
+            </div>
+            </a>   
+       <?php  }?>
        
          <?php if(get_post_type()=='dishes'){ ?>
-            <ul class="theDishes"><?php 
+          
+          <div class="resContainer">
+          <ul class="theDishes"><?php 
              get_template_part('template-parts/page','dishSearch'); ?>
             </ul>
+          </div>
+           
          <?php  } ?>
        <?php endwhile; ?>
        

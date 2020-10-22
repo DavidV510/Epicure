@@ -74,9 +74,56 @@ ul{
 }
 
 
+.thanks{
+    text-align: center;
+    font-size: 10rem;
+    font-family: 'Helvetica';
+    margin-top: 5rem;
+    height: 30vw;
+}
+
 @media(max-width:768px){
     .container {
         max-width: 92.5vw;
         margin: 0 auto;
     }
+}
+
+
+.side{
+    background-color: white;
+    border: solid 2px black;
+    border-radius: 12px;
+    height: 2rem;
+    width: 2rem;
+    padding: 0.15rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    margin-right: 1.2rem;
+}
+.side .inside{
+    display: none;
+    border-radius: 12px;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+.change{
+    background-color: white;
+    border: solid 2px black;
+    margin-bottom: 2rem;
+    height: 2rem;
+    width: 2rem;
+    padding: 0.3rem 0.1rem;
+    cursor: pointer;
+    margin-right: 1.2rem;
+}
+
+.change .inside{
+    display: none;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    
 }

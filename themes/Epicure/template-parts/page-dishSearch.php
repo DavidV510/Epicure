@@ -2,10 +2,10 @@
             <?php 
             
             
-            $newId=get_the_ID().'b';
+            $newId=get_the_ID() + 3 .'b';
         ?>
 
-        <li id="Some" class='theDish searchDish'  data-toggle="modal" data-target="#<?php echo $newId ?>"> 
+        <li class='theDish searchDish'  data-toggle="modal" data-target="#<?php echo $newId ?>"> 
             <div class="theDish-Img">
               <?php the_post_thumbnail(); ?>
             </div>    
